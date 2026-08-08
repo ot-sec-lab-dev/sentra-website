@@ -1,0 +1,24 @@
+<svg width="700" height="500" viewBox="0 0 700 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="500" rx="20" fill="#F8FAFC"/>
+
+  <rect x="60" y="60" width="580" height="90" rx="12" fill="#0F172A"/>
+  <text x="90" y="115" fill="white" font-size="22" font-family="Arial" font-weight="700">
+    Enterprise IT
+  </text>
+
+  <rect x="100" y="220" width="500" height="70" rx="12" fill="#2563EB"/>
+  <text x="130" y="263" fill="white" font-size="20" font-family="Arial" font-weight="700">
+    Industrial DMZ
+  </text>
+
+  <rect x="60" y="360" width="580" height="90" rx="12" fill="#111827"/>
+  <text x="90" y="415" fill="white" font-size="22" font-family="Arial" font-weight="700">
+    OT / ICS Network
+  </text>
+
+  <line x1="350" y1="150" x2="350" y2="220" stroke="#2563EB" stroke-width="4"/>
+  <line x1="350" y1="290" x2="350" y2="360" stroke="#2563EB" stroke-width="4"/>
+
+  <circle cx="350" cy="185" r="8" fill="#2563EB"/>
+  <circle cx="350" cy="325" r="8" fill="#2563EB"/>
+</svg>
