@@ -99,17 +99,27 @@ export default function BookAssessmentPage() {
           </h2>
 
           <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-slate-300">
-            Online booking will be available shortly.
-            In the meantime, contact us directly to arrange
-            your discovery session.
+            Pick a time that works for you, or reach out directly
+            to arrange your discovery session.
           </p>
 
-          <a
-            href="mailto:contact@sentraot.com"
-            className="mt-12 inline-block rounded-xl bg-blue-600 px-10 py-5 text-lg font-semibold transition hover:bg-blue-700"
-          >
-            Contact Sentra OT
-          </a>
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            
+              href="https://cal.com/juan-jose-calado-carrillo-qlsaya/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-xl bg-blue-600 px-10 py-5 text-lg font-semibold transition hover:bg-blue-700"
+            >
+              Book a Time Slot
+            </a>
+
+            
+              href="mailto:juanjocc.otsec@gmail.com"
+              className="inline-block rounded-xl border border-slate-500 px-10 py-5 text-lg font-semibold text-white transition hover:border-slate-300"
+            >
+              Contact by Email
+            </a>
+          </div>
 
         </div>
 
