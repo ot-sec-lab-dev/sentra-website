@@ -1,112 +1,75 @@
-import { ReactNode } from "react";
+import { ShieldCheckIcon } from "lucide-react";
 
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-
-import LaunchUI from "../../logos/launch-ui";
-import {
-  Footer,
-  FooterBottom,
-  FooterColumn,
-  FooterContent,
-} from "../../ui/footer";
-import { ModeToggle } from "../../ui/mode-toggle";
-
-interface FooterLink {
-  text: string;
-  href: string;
-}
-
-interface FooterColumnProps {
-  title: string;
-  links: FooterLink[];
-}
+import { Section } from "../../ui/section";
 
 interface FooterProps {
-  logo?: ReactNode;
-  name?: string;
-  columns?: FooterColumnProps[];
-  copyright?: string;
-  policies?: FooterLink[];
-  showModeToggle?: boolean;
-  className?: string;
+className?: string;
 }
 
-export default function FooterSection({
-  logo = <LaunchUI />,
-  name = "Launch UI",
-  columns = [
-    {
-      title: "Product",
-      links: [
-        { text: "Changelog", href: siteConfig.url },
-        { text: "Documentation", href: siteConfig.url },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { text: "About", href: siteConfig.url },
-        { text: "Careers", href: siteConfig.url },
-        { text: "Blog", href: siteConfig.url },
-      ],
-    },
-    {
-      title: "Contact",
-      links: [
-        { text: "Discord", href: siteConfig.url },
-        { text: "Twitter", href: siteConfig.url },
-        { text: "GitHub", href: siteConfig.links.github },
-      ],
-    },
-  ],
-  copyright = "© 2026 Mikołaj Dobrucki. All rights reserved",
-  policies = [
-    { text: "Privacy Policy", href: siteConfig.url },
-    { text: "Terms of Service", href: siteConfig.url },
-  ],
-  showModeToggle = true,
-  className,
-}: FooterProps) {
-  return (
-    <footer className={cn("bg-background w-full px-4", className)}>
-      <div className="max-w-container mx-auto">
-        <Footer>
-          <FooterContent>
-            <FooterColumn className="col-span-2 sm:col-span-3 md:col-span-1">
-              <div className="flex items-center gap-2">
-                {logo}
-                <h3 className="text-xl font-bold">{name}</h3>
-              </div>
-            </FooterColumn>
-            {columns.map((column) => (
-              <FooterColumn key={column.title}>
-                <h3 className="text-md pt-1 font-semibold">{column.title}</h3>
-                {column.links.map((link) => (
-                  <a
-                    key={`${link.href}-${link.text}`}
-                    href={link.href}
-                    className="text-muted-foreground text-sm"
-                  >
-                    {link.text}
-                  </a>
-                ))}
-              </FooterColumn>
-            ))}
-          </FooterContent>
-          <FooterBottom>
-            <div>{copyright}</div>
-            <div className="flex items-center gap-4">
-              {policies.map((policy) => (
-                <a key={`${policy.href}-${policy.text}`} href={policy.href}>
-                  {policy.text}
-                </a>
-              ))}
-              {showModeToggle && <ModeToggle />}
-            </div>
-          </FooterBottom>
-        </Footer>
+export default function Footer({ className }: FooterProps) {
+return (
+<footer className={className}>
+<Section className="border-t border-border py-10">
+<div className="mx-auto flex max-w-container flex-col gap-8">
+<div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+<div className="flex items-center gap-3">
+<div className="flex size-10 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand">
+<ShieldCheckIcon className="size-5" />
+</div>
+
+          <div>
+            <p className="font-semibold tracking-tight">
+              Sentra OT
+            </p>
+
+
+            <p className="text-sm text-muted-foreground">
+              OT Cybersecurity
+            </p>
+          </div>
+        </div>
+
+
+        <nav className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
+          <a
+            href="#services"
+            className="transition-colors hover:text-brand"
+          >
+            Services
+          </a>
+
+
+          <a
+            href="#faq"
+            className="transition-colors hover:text-brand"
+          >
+            FAQ
+          </a>
+
+
+          <a
+            href="/book-assessment"
+            className="transition-colors hover:text-brand"
+          >
+            Contact
+          </a>
+        </nav>
       </div>
-    </footer>
-  );
+
+
+      <div className="flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          © {new Date().getFullYear()} Sentra OT. All rights reserved.
+        </p>
+
+
+        <p>
+          Independent OT cybersecurity assessments and advisory.
+        </p>
+      </div>
+    </div>
+  </Section>
+</footer>
+
+);
 }

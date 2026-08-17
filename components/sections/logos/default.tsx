@@ -1,70 +1,91 @@
-import { ReactNode } from "react";
+import { ShieldCheckIcon } from "lucide-react";
 
-import { siteConfig } from "@/config/site";
-
-import Figma from "../../logos/figma";
-import React from "../../logos/react";
-import ShadcnUi from "../../logos/shadcn-ui";
-import Tailwind from "../../logos/tailwind";
-import TypeScript from "../../logos/typescript";
-import { Badge } from "../../ui/badge";
-import Logo from "../../ui/logo";
 import { Section } from "../../ui/section";
 
-interface LogosProps {
-  title?: string;
-  badge?: ReactNode | false;
-  logos?: ReactNode[] | false;
-  className?: string;
+interface Framework {
+name: string;
+description: string;
 }
 
+interface LogosProps {
+title?: string;
+frameworks?: Framework[] | false;
+className?: string;
+}
+
+const DEFAULT_FRAMEWORKS: Framework[] = [
+{
+name: "IEC 62443",
+description: "Industrial automation and control systems security",
+},
+{
+name: "NIST CSF",
+description: "Cybersecurity risk management framework",
+},
+{
+name: "MITRE ATT&CK for ICS",
+description: "Industrial control system threat intelligence",
+},
+{
+name: "Purdue Model",
+description: "Industrial network segmentation and architecture",
+},
+{
+name: "OT / ICS Security",
+description: "Operational technology security principles",
+},
+{
+name: "Risk-Based Assessment",
+description: "Prioritised security improvement planning",
+},
+];
+
 export default function Logos({
-  title = "Built with industry-standard tools and best practices",
-  badge = (
-    <Badge variant="outline" className="border-brand/30 text-brand">
-      Last updated: {siteConfig.stats.updated}
-    </Badge>
-  ),
-  logos = [
-    <Logo key="figma" image={Figma} name="Figma" />,
-    <Logo
-      key="react"
-      image={React}
-      name="React"
-      version="19.2.7"
-      badge="New"
-    />,
-    <Logo
-      key="typescript"
-      image={TypeScript}
-      name="TypeScript"
-      version="6.0.3"
-      badge="New"
-    />,
-    <Logo
-      key="shadcn"
-      image={ShadcnUi}
-      name="Shadcn/ui"
-      version="4.11.0"
-      badge="New"
-    />,
-    <Logo key="tailwind" image={Tailwind} name="Tailwind" version="4.2.1" />,
-  ],
-  className,
+title = "Built around recognised OT cybersecurity practices.",
+frameworks = DEFAULT_FRAMEWORKS,
+className,
 }: LogosProps) {
-  return (
-    <Section className={className}>
-      <div className="max-w-container mx-auto flex flex-col items-center gap-8 text-center">
-        <div className="flex flex-col items-center gap-6">
-          {badge !== false && badge}
-          <h2 className="text-md font-semibold sm:text-2xl">{title}</h2>
-        </div>
-        {logos !== false && logos.length > 0 && (
-          <div className="flex flex-wrap items-center justify-center gap-8">
-            {logos}
+return (
+<Section className={className}>
+<div className="mx-auto flex max-w-container flex-col items-center gap-10">
+<div className="flex max-w-3xl flex-col items-center text-center">
+<div className="mb-4 flex size-10 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-brand">
+<ShieldCheckIcon className="size-5" />
+</div>
+
+      <h2 className="text-2xl font-semibold leading-tight sm:text-3xl">
+        {title}
+      </h2>
+
+
+      <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">
+        Our assessments combine recognised cybersecurity frameworks,
+        industrial security principles and practical OT experience.
+      </p>
+    </div>
+
+
+    {frameworks !== false && frameworks.length > 0 && (
+      <div className="grid w-full grid-cols-1 overflow-hidden rounded-2xl border border-border sm:grid-cols-2 lg:grid-cols-3">
+        {frameworks.map((framework) => (
+          <div
+            key={framework.name}
+            className="border-b border-border p-6 transition-colors duration-300 hover:bg-muted/40 sm:p-7 lg:nth-[3n]:border-r-0"
+          >
+            <div className="text-sm font-semibold text-foreground">
+              {framework.name}
+            </div>
+
+
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              {framework.description}
+            </p>
           </div>
-        )}
+        ))}
       </div>
-    </Section>
-  );
+    )}
+  </div>
+</Section>
+
+);
 }

@@ -1,137 +1,165 @@
-"use client";
-
-import { type VariantProps } from "class-variance-authority";
+﻿import Image from "next/image";
 import { Menu } from "lucide-react";
-import { ReactNode } from "react";
 
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-
-import LaunchUI from "../../logos/launch-ui";
-import { Button, buttonVariants } from "../../ui/button";
+import { Button } from "../../ui/button";
 import {
   Navbar as NavbarComponent,
   NavbarLeft,
   NavbarRight,
 } from "../../ui/navbar";
-import Navigation from "../../ui/navigation";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../../ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "../../ui/sheet";
 
 interface NavbarLink {
   text: string;
   href: string;
 }
 
-interface NavbarActionProps {
-  text: string;
-  href: string;
-  variant?: VariantProps<typeof buttonVariants>["variant"];
-  icon?: ReactNode;
-  iconRight?: ReactNode;
-  isButton?: boolean;
-}
+const navigationLinks: NavbarLink[] = [
+  {
+    text: "Capabilities",
+    href: "#capabilities",
+  },
+  {
+    text: "Services",
+    href: "#services",
+  },
+  {
+    text: "Methodology",
+    href: "#methodology",
+  },
+  {
+    text: "Why Sentra OT",
+    href: "#why-sentra-ot",
+  },
+  {
+    text: "Contact",
+    href: "#contact",
+  },
+];
 
-interface NavbarProps {
-  logo?: ReactNode;
-  name?: string;
-  homeUrl?: string;
-  mobileLinks?: NavbarLink[];
-  actions?: NavbarActionProps[];
-  showNavigation?: boolean;
-  customNavigation?: ReactNode;
-  className?: string;
-}
-
-export default function Navbar({
-  logo = <LaunchUI />,
-  name = "Launch UI",
-  homeUrl = siteConfig.url,
-  mobileLinks = [
-    { text: "Getting Started", href: siteConfig.url },
-    { text: "Components", href: siteConfig.url },
-    { text: "Documentation", href: siteConfig.url },
-  ],
-  actions = [
-    { text: "Sign in", href: siteConfig.url, isButton: false },
-    {
-      text: "Get Started",
-      href: siteConfig.url,
-      isButton: true,
-      variant: "default",
-    },
-  ],
-  showNavigation = true,
-  customNavigation,
-  className,
-}: NavbarProps) {
+export default function Navbar() {
   return (
-    <header className={cn("sticky top-0 z-50 -mb-4 px-4 pb-4", className)}>
-      <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
-      <div className="max-w-container relative mx-auto">
-        <NavbarComponent>
-          <NavbarLeft>
+    <header className="sticky top-0 z-50 px-4 pt-5 pb-6 sm:px-6">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-background/80 backdrop-blur-xl" />
+
+      <div className="relative mx-auto max-w-container">
+        <NavbarComponent className="py-3">
+          <NavbarLeft className="gap-6">
             <a
-              href={homeUrl}
-              className="flex items-center gap-2 text-xl font-bold"
+              href="/"
+              className="group flex items-center gap-3"
             >
-              {logo}
-              {name}
+              <Image
+                src="/sentra-logo.png"
+                alt="Sentra OT"
+                width={56}
+                height={56}
+                priority
+                className="size-12 object-contain transition-transform duration-300 group-hover:scale-105 sm:size-14"
+              />
+
+              <span className="text-2xl font-bold tracking-tight sm:text-3xl">
+                <span className="text-foreground">Sentra</span>
+                <span className="text-brand"> OT</span>
+              </span>
             </a>
-            {showNavigation && (customNavigation || <Navigation />)}
-          </NavbarLeft>
-          <NavbarRight>
-            {actions.map((action) =>
-              action.isButton ? (
-                <Button
-                  key={`${action.href}-${action.text}`}
-                  variant={action.variant || "default"}
-                  asChild
-                >
-                  <a href={action.href}>
-                    {action.icon}
-                    {action.text}
-                    {action.iconRight}
-                  </a>
-                </Button>
-              ) : (
+
+            <div className="hidden h-8 w-px bg-border md:block" />
+
+            <nav className="hidden items-center gap-6 md:flex lg:gap-8">
+              {navigationLinks.map((link) => (
                 <a
-                  key={`${action.href}-${action.text}`}
-                  href={action.href}
-                  className="hidden text-sm md:block"
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-brand lg:text-base"
                 >
-                  {action.text}
+                  {link.text}
                 </a>
-              ),
-            )}
+              ))}
+            </nav>
+          </NavbarLeft>
+
+          <NavbarRight className="gap-3 sm:gap-4">
+            <Button
+              asChild
+              size="lg"
+              className="hidden h-11 px-5 sm:inline-flex"
+            >
+              <a href="/book-assessment">
+                Book an Assessment
+              </a>
+            </Button>
+
             <Sheet>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="shrink-0 md:hidden"
+                  className="size-12 rounded-xl md:hidden"
                 >
-                  <Menu className="size-5" />
-                  <span className="sr-only">Toggle navigation menu</span>
+                  <Menu className="size-6" />
+                  <span className="sr-only">
+                    Toggle navigation menu
+                  </span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right">
-                <SheetTitle className="sr-only">Navigation menu</SheetTitle>
-                <nav className="grid gap-6 text-lg font-medium">
+
+              <SheetContent
+                side="right"
+                className="w-[320px] bg-background/95 backdrop-blur-xl sm:w-[380px]"
+              >
+                <SheetTitle className="sr-only">
+                  Navigation menu
+                </SheetTitle>
+
+                <nav className="mt-8 grid gap-6">
                   <a
-                    href={homeUrl}
-                    className="flex items-center gap-2 text-xl font-bold"
+                    href="/"
+                    className="flex items-center gap-3 text-3xl font-bold tracking-tight"
                   >
-                    <span>{name}</span>
+                    <Image
+                      src="/sentra-logo.png"
+                      alt="Sentra OT"
+                      width={52}
+                      height={52}
+                      priority
+                      className="size-12 object-contain"
+                    />
+
+                    <span className="text-foreground">
+                      Sentra
+                    </span>
+                    <span className="text-brand">
+                      {" "}OT
+                    </span>
                   </a>
-                  {mobileLinks.map((link) => (
+
+                  <div className="my-2 h-px bg-border" />
+
+                  {navigationLinks.map((link) => (
                     <a
-                      key={`${link.href}-${link.text}`}
+                      key={link.href}
                       href={link.href}
-                      className="text-muted-foreground hover:text-foreground"
+                      className="rounded-lg px-2 py-2 text-lg font-medium text-muted-foreground transition-colors hover:bg-brand/5 hover:text-brand"
                     >
                       {link.text}
                     </a>
                   ))}
+
+                  <Button
+                    asChild
+                    size="lg"
+                    className="mt-3 h-12"
+                  >
+                    <a href="/book-assessment">
+                      Book an Assessment
+                    </a>
+                  </Button>
                 </nav>
               </SheetContent>
             </Sheet>

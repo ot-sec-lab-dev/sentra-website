@@ -1,174 +1,115 @@
-import Link from "next/link";
-import { ReactNode } from "react";
-
-import { siteConfig } from "@/config/site";
-
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../../ui/accordion";
 import { Section } from "../../ui/section";
 
-interface FAQItemProps {
-  question: string;
-  answer: ReactNode;
-  value?: string;
+interface FAQItem {
+question: string;
+answer: string;
 }
 
 interface FAQProps {
-  title?: string;
-  items?: FAQItemProps[] | false;
-  className?: string;
+title?: string;
+description?: string;
+items?: FAQItem[] | false;
+className?: string;
 }
 
+const DEFAULT_ITEMS: FAQItem[] = [
+{
+question: "What is an OT cybersecurity assessment?",
+answer:
+"An OT cybersecurity assessment evaluates the security posture of industrial environments, including assets, network architecture, communications, vulnerabilities, security controls and operational risks.",
+},
+{
+question: "Why is OT cybersecurity different from IT cybersecurity?",
+answer:
+"Industrial environments have different operational constraints. Availability, safety, legacy systems, specialised protocols and process continuity must be considered alongside traditional cybersecurity requirements.",
+},
+{
+question: "What does an assessment include?",
+answer:
+"The scope can include asset visibility, network architecture, segmentation, vulnerability exposure, security controls, remote access, industrial protocols and alignment with recognised OT cybersecurity practices.",
+},
+{
+question: "Can Sentra OT work with IEC 62443?",
+answer:
+"Yes. IEC 62443 can be used as a reference framework to assess industrial cybersecurity controls and identify practical opportunities for improving the security posture of OT environments.",
+},
+{
+question: "Will the assessment affect production?",
+answer:
+"The approach is designed around the operational constraints of industrial environments. Assessment activities are planned to minimise disruption and avoid unnecessary impact on critical production systems.",
+},
+{
+question: "What do we receive after the assessment?",
+answer:
+"The outcome is designed to provide a clear picture of the current security posture, the most relevant risks and a prioritised roadmap of recommended improvements.",
+},
+{
+question: "Can Sentra OT support remediation?",
+answer:
+"Yes. Beyond the initial assessment, Sentra OT can provide advisory support to help organisations prioritise remediation activities, improve security architecture and strengthen their OT cybersecurity programme.",
+},
+{
+question: "How do we start?",
+answer:
+"The first step is a short conversation about your industrial environment, objectives and current security challenges. From there, we can define an appropriate assessment scope.",
+},
+];
+
 export default function FAQ({
-  title = "Questions and Answers",
-  items = [
-    {
-      question:
-        "Why is building a great landing page critical for your business?",
-      answer: (
-        <>
-          <p className="text-muted-foreground mb-4 max-w-[640px] text-balance">
-            In today&apos;s AI-driven world, standing out is harder than ever.
-            While anyone can build a product, a professional landing page makes
-            the difference between success and failure.
-          </p>
-          <p className="text-muted-foreground mb-4 max-w-[640px] text-balance">
-            Launch UI helps you ship faster without compromising on quality.
-          </p>
-        </>
-      ),
-    },
-    {
-      question: "Why use Launch UI instead of a no-code tool?",
-      answer: (
-        <>
-          <p className="text-muted-foreground mb-4 max-w-[600px]">
-            No-code tools lock you into their ecosystem with recurring fees and
-            limited control. They often come with performance issues and make it
-            difficult to integrate with your product.
-          </p>
-          <p className="text-muted-foreground mb-4 max-w-[600px]">
-            You can&apos;t even change your hosting provider and basic things
-            like web analytics come as extra costs and paid add-ons.
-          </p>
-          <p className="text-muted-foreground mb-4 max-w-[600px]">
-            What might seem like a convenient solution today could paint you
-            into a corner tomorrow, limiting your ability to scale and adapt.
-            Launch UI gives you full control of your code while maintaining
-            professional quality.
-          </p>
-        </>
-      ),
-    },
-    {
-      question:
-        "How is Launch UI different from other component libraries and templates?",
-      answer: (
-        <>
-          <p className="text-muted-foreground mb-4 max-w-[580px]">
-            Launch UI stands out with premium design quality and delightful
-            touches of custom animations and illustrations.
-          </p>
-          <p className="text-muted-foreground mb-4 max-w-[580px]">
-            All components are carefully crafted to help position your product
-            as a professional tool, avoiding the generic template look.
-          </p>
-          <p className="text-muted-foreground mb-4 max-w-[640px] text-balance">
-            Unlike many libraries that rely on outdated CSS practices and old
-            dependencies, Launch UI is built with modern technologies and best
-            practices in mind.
-          </p>
-        </>
-      ),
-    },
-    {
-      question: 'What exactly does it mean that "The code is yours"?',
-      answer: (
-        <>
-          <p className="text-muted-foreground mb-4 max-w-[580px]">
-            The basic version of Launch UI is open-source and free forever,
-            under a do-whatever-you-want license.
-          </p>
-          <p className="text-muted-foreground mb-4 max-w-[580px]">
-            The pro version that contains more components and options is a
-            one-time purchase that gives you lifetime access to all current and
-            future content. Use it for unlimited personal and commercial
-            projects - no recurring fees or restrictions.
-          </p>
-          <p className="text-muted-foreground mb-4 max-w-[580px]">
-            For complete details about licensing and usage rights, check out{" "}
-            <Link
-              href={`${siteConfig.url}/pricing`}
-              className="text-foreground underline"
-            >
-              the pricing page
-            </Link>
-            .
-          </p>
-        </>
-      ),
-    },
-    {
-      question: "Are Figma files included?",
-      answer: (
-        <p className="text-muted-foreground mb-4 max-w-[580px]">
-          Yes! The complete Launch UI template is available for free on the{" "}
-          <Link
-            href="https://www.figma.com/community/file/1420131743903900629/launch-ui-landing-page-components-ui-kit"
-            className="text-foreground underline"
-          >
-            Figma community
-          </Link>
-          .
-        </p>
-      ),
-    },
-    {
-      question: "Can I get a discount?",
-      answer: (
-        <>
-          <p className="text-muted-foreground mb-4 max-w-[580px]">
-            Actually, yes! I&apos;m always actively looking for beta testers of
-            new features. If you are interested in exchanging feedback for a
-            discount, please contact me via{" "}
-            <a
-              href={siteConfig.links.email}
-              className="underline underline-offset-2"
-            >
-              email
-            </a>
-            .
-          </p>
-        </>
-      ),
-    },
-  ],
-  className,
+title = "Questions about OT cybersecurity?",
+description = "Here are some of the questions organisations commonly ask before starting an OT security assessment.",
+items = DEFAULT_ITEMS,
+className,
 }: FAQProps) {
-  return (
-    <Section className={className}>
-      <div className="max-w-container mx-auto flex flex-col items-center gap-8">
-        <h2 className="text-center text-3xl font-semibold sm:text-5xl">
-          {title}
-        </h2>
-        {items !== false && items.length > 0 && (
-          <Accordion type="single" collapsible className="w-full max-w-[800px]">
-            {items.map((item, index) => (
-              <AccordionItem
-                key={item.value ?? item.question}
-                value={item.value || `item-${index + 1}`}
-              >
-                <AccordionTrigger>{item.question}</AccordionTrigger>
-                <AccordionContent>{item.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        )}
+return (
+<Section className={className}>
+<div className="mx-auto max-w-container">
+<div className="mx-auto max-w-3xl text-center">
+<p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+FAQ
+</p>
+
+      <h2 className="text-3xl font-semibold leading-tight sm:text-5xl">
+        {title}
+      </h2>
+
+
+      <p className="mt-5 text-base leading-7 text-muted-foreground sm:text-lg">
+        {description}
+      </p>
+    </div>
+
+
+    {items !== false && items.length > 0 && (
+      <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-border">
+        {items.map((item, index) => (
+          <details
+            key={item.question}
+            className="group border-b border-border last:border-b-0"
+          >
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 text-left font-semibold transition-colors hover:bg-muted/40 sm:p-7">
+              <span>{item.question}</span>
+
+
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-brand transition-transform duration-200 group-open:rotate-45">
+                <span className="text-lg font-normal leading-none">
+                  +
+                </span>
+              </span>
+            </summary>
+
+
+            <div className="px-6 pb-6 sm:px-7 sm:pb-7">
+              <p className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+                {item.answer}
+              </p>
+            </div>
+          </details>
+        ))}
       </div>
-    </Section>
-  );
+    )}
+  </div>
+</Section>
+
+);
 }

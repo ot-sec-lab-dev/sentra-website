@@ -5,58 +5,21 @@ import { ThemeProvider } from "next-themes";
 
 import { inter } from "@/lib/fonts";
 
-import { siteConfig } from "../config/site";
-
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: "Sentra OT",
+    template: "%s | Sentra OT",
   },
-  metadataBase: new URL(siteConfig.url),
-  description: siteConfig.description,
+  description:
+    "OT cybersecurity services for industrial organizations. Assess risk, strengthen resilience and protect critical infrastructure.",
   keywords: [
-    "Landing page template",
-    "Components",
-    "Shadcn",
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Radix UI",
+    "OT Cybersecurity",
+    "ICS Cybersecurity",
+    "Industrial Cybersecurity",
+    "IEC 62443",
+    "OT Security Assessment",
+    "Critical Infrastructure",
   ],
-  authors: [
-    {
-      name: "Mikolaj Dobrucki",
-      url: "https://mikolajdobrucki.com",
-    },
-  ],
-  creator: "mikolajdobrucki",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: "@mikolajdobrucki",
-  },
-  icons: {
-    icon: "/favicon.svg",
-    apple: "/apple-touch-icon.png",
-  },
 };
 
 export default function RootLayout({
@@ -65,17 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className="dark"
-      style={{ colorScheme: "dark" }}
-      suppressHydrationWarning
-    >
-      <body className={`${inter.variable} bg-background font-sans antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} bg-background font-sans antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}
