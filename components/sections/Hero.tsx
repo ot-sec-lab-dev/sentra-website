@@ -1,22 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import FadeIn from "../ui/FadeIn";
+import FadeIn from "../FadeIn";
 import HeroPanel from "./HeroPanel";
 import HeroMetrics from "./HeroMetrics";
 
 export default function Hero() {
   return (
     <section className="border-b border-slate-200 bg-white">
-
       <div className="mx-auto max-w-7xl px-8 pt-24 pb-20">
-
         <div className="grid items-center gap-20 lg:grid-cols-2">
-
           <FadeIn>
-
             <div>
-
               <p className="mb-6 text-sm font-semibold uppercase tracking-[0.35em] text-blue-600">
                 INDEPENDENT OT CYBERSECURITY CONSULTING
               </p>
@@ -42,7 +37,6 @@ export default function Hero() {
               </p>
 
               <div className="mt-12 flex flex-wrap gap-5">
-
                 <Link
                   href="/book-assessment"
                   className="rounded-xl bg-slate-900 px-8 py-4 text-lg font-semibold text-white transition hover:bg-blue-600"
@@ -57,32 +51,31 @@ export default function Hero() {
                   IEC 62443 Assessment
                 </Link>
 
+                <a
+                  href="https://ot-sec-lab-dev.github.io/sentra-ot/demo/SENTRA_OT_Coria_50_Demo.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-xl border border-slate-900 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition hover:bg-slate-50"
+                >
+                  Ver Demo Real: Coria 50% (PDF 82KB)
+                </a>
               </div>
-
             </div>
-
           </FadeIn>
 
           <FadeIn delay={0.2}>
-
             <div className="flex justify-center">
               <HeroPanel />
             </div>
-
           </FadeIn>
-
         </div>
 
         <div className="mt-24">
-
           <FadeIn delay={0.35}>
             <HeroMetrics />
           </FadeIn>
-
         </div>
-
       </div>
-
     </section>
   );
 }
