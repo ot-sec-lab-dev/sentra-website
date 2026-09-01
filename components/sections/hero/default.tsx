@@ -10,7 +10,7 @@ interface HeroProps { title?: ReactNode; description?: string; mockup?: ReactNod
 
 const DEFAULT_HERO_BUTTONS: HeroButtonProps[] = [
   { href: "/book-assessment", text: "Book an Assessment", variant: "default", iconRight: <ArrowRightIcon className="size-4" /> },
-  { href: "https://ot-sec-lab-dev.github.io/sentra-ot/demo/SENTRA_OT_Coria_50_Demo.pdf", text: "Ver Demo Real (PDF 82KB)", variant: "outline", iconRight: <ExternalLinkIcon className="size-4" /> },
+  { href: "https://ot-sec-lab-dev.github.io/sentra-ot/demo/SENTRA_OT_Demo.pdf", text: "View Live Demo (PDF)", variant: "outline", iconRight: <ExternalLinkIcon className="size-4" /> },
   { href: "#services", text: "Explore Services", variant: "glow" },
 ];
 
